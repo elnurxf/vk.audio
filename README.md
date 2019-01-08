@@ -18,7 +18,7 @@ Decoded direct links to Mp3 files from vk.com (Alternative for VK Audio API).
 - [Download](https://github.com/elnurxf/vk.audio/archive/master.zip) archive
 - Rename ```config.sample.php``` to ```config.php```
 - Set your settings in ```config.php```
-- run ``` composer install ```
+- Run ``` composer install ```
 - Enjoy
 
 ## Contributing
