@@ -1,7 +1,6 @@
 
 # VK.Music - Direct Download Mp3
 
-![](https://poser.pugx.org/elnurxf/vk.audio/downloads.svg)
 ![](https://img.shields.io/github/issues/elnurxf/vk.audio.svg)
 ![](https://img.shields.io/github/forks/elnurxf/vk.audio.svg)
 ![](https://img.shields.io/github/stars/elnurxf/vk.audio.svg)
