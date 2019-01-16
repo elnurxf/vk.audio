@@ -2,4 +2,4 @@
 
 $__USERNAME = 'john@example.com';
 $__PASSWORD = '';
-$__USER_ID  = 00000001;
+$__USER_ID = 00000001;
