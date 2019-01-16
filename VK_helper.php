@@ -2,7 +2,7 @@
 
 global $n, $i, $__USER_ID;
 
-$n = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=";
+$n = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=';
 $i = [
     'v' => function ($e) {
         return strrev($e);
@@ -10,13 +10,14 @@ $i = [
     'r' => function ($e, $t) {
         global $n;
         $e = str_split($e);
-        for ($o = $n . $n, $s = count($e); $s--;) {
+        for ($o = $n.$n, $s = count($e); $s--;) {
             $i = stripos($o, $e[$s]);
             if (~$i) {
                 $e[$s] = substr($o, $i - $t, 1);
             }
         }
-        return implode("", $e);
+
+        return implode('', $e);
     },
     's' => function ($e, $t) {
         $n = strlen($e);
@@ -25,16 +26,18 @@ $i = [
             $o = 0;
             $e = str_split($e);
             for (; ++$o < $n;) {
-                $p     = array_splice($e, $i[$n - 1 - $o], 1, $e[$o]);
+                $p = array_splice($e, $i[$n - 1 - $o], 1, $e[$o]);
                 $e[$o] = $p[0];
             }
-            $e = implode("", $e);
+            $e = implode('', $e);
         }
+
         return $e;
     },
     'i' => function ($e, $t) {
         global $i, $__USER_ID;
         $k = $i['s'];
+
         return $k($e, $t ^ $__USER_ID);
     },
 ];
@@ -46,7 +49,7 @@ function a($e)
         return !1;
     }
     $s = 0;
-    for ($o = 0, $a = ""; $s < strlen($e);) {
+    for ($o = 0, $a = ''; $s < strlen($e);) {
         $i = $e[$s++];
         $i = strpos($n, $i);
         if ($i !== false) {
@@ -56,6 +59,7 @@ function a($e)
             }
         }
     }
+
     return $a;
 }
 
@@ -67,32 +71,40 @@ function r($e, $t)
         $o = $n;
         $t = abs($t);
         for (; $o--;) {
-            $t     = ($n * ($o + 1) ^ $t + $o) % $n;
+            $t = ($n * ($o + 1) ^ $t + $o) % $n;
             $i[$o] = $t;
         }
     }
+
     return $i;
 }
 
 function decode($e)
 {
     global $i;
-    if (strpos($e, "audio_api_unavailable") !== false) {
-        $t = explode("?extra=", $e);
+    if (strpos($e, 'audio_api_unavailable') !== false) {
+        $t = explode('?extra=', $e);
         $t = $t[1];
-        $t = explode("#", $t);
-        $n = ("" === $t[1]) ? "" : a($t[1]);
+        $t = explode('#', $t);
+        $n = ('' === $t[1]) ? '' : a($t[1]);
         $t = a($t[0]);
-        if (!is_string($n) || !$t) {return $e;}
+        if (!is_string($n) || !$t) {
+            return $e;
+        }
         $n = $n ? explode(chr(9), $n) : [];
         for ($l = count($n); $l--;) {
             $r = explode(chr(11), $n[$l]);
             $s = array_splice($r, 0, 1, $t);
             $s = $s[0];
-            if (!$i[$s]) {return $e;}
+            if (!$i[$s]) {
+                return $e;
+            }
             $t = $i[$s](...$r);
         }
-        if ($t && "http" === substr($t, 0, 4)) {return $t;}
+        if ($t && 'http' === substr($t, 0, 4)) {
+            return $t;
+        }
     }
+
     return $e;
 }
